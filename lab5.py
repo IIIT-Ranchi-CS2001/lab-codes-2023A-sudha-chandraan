@@ -61,3 +61,63 @@ for char in input_string:
 print("Count of each letter in the string:")
 for letter, count in letter_count.items():
     print(f"{letter}: {count}")
+
+
+
+# qusetion 6>WAP to count the number of each character present in a string using the concept of a dictionary.
+
+string = input("Enter a string: ")
+char_count = {}
+
+for char in string:
+    if char != ' ': 
+        char_count[char] = char_count.get(char, 0) + 1
+
+print("Character frequencies (excluding spaces):")
+for char, count in char_count.items():
+    print(f"'{char}': {count}")
+
+
+# question 7>Enter three lists using list comprehension: Customer name, Customer ID, and shopping points. 
+# Construct a list of tuples with and without using built-in function zip().
+
+names = [input("Enter customer name: ") for _ in range(3)]
+customer_ids = [int(input("Enter customer ID: ")) for _ in range(3)]
+points = [int(input("Enter shopping points: ")) for _ in range(3)]
+
+customers_without_zip = [(names[i], customer_ids[i], points[i]) for i in range(3)]
+print("List of tuples (without zip):", customers_without_zip)
+
+
+# question 8> Sort the list of tuples constructed above with and without sorted function. 
+
+names = [input("Enter customer name: ") for _ in range(3)]
+customer_ids = [int(input("Enter customer ID: ")) for _ in range(3)]
+points = [int(input("Enter shopping points: ")) for _ in range(3)]
+
+customers_with_zip = list(zip(names, customer_ids, points))
+print("List of tuples (with zip):", customers_with_zip)
+
+
+customers_without_zip = [(names[i], customer_ids[i], points[i]) for i in range(3)]
+print("List of tuples (without zip):", customers_without_zip)
+
+sorted_customers_with_zip = sorted(customers_with_zip, key=lambda x: x[1])
+print("Sorted customers (with zip, using sorted()):", sorted_customers_with_zip)
+
+sorted_customers_without_zip = sorted(customers_without_zip, key=lambda x: x[1])
+print("Sorted customers (without zip, using sorted()):", sorted_customers_without_zip)
+
+def bubble_sort(customers):
+    n = len(customers)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if customers[j][1] > customers[j+1][1]:  
+                customers[j], customers[j+1] = customers[j+1], customers[j]
+    return customers
+
+sorted_customers_with_zip_manual = bubble_sort(customers_with_zip.copy())
+sorted_customers_without_zip_manual = bubble_sort(customers_without_zip.copy())
+
+print("Sorted customers (with zip, manual sort):", sorted_customers_with_zip_manual)
+print("Sorted customers (without zip, manual sort):", sorted_customers_without_zip_manual)
